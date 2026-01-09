@@ -33,18 +33,18 @@ const Footer = () => {
            </p>
         </div>
 
-        {/* Removed items-start so columns stretch */}
-        <div className="grid lg:grid-cols-2 gap-12">
+        {/* MAIN GRID - ADDED 'items-start' TO FIX ALIGNMENT */}
+        <div className="grid lg:grid-cols-2 gap-12 items-start">
           
           {/* LEFT SIDE: Social Cards */}
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4 w-full">
              
              {/* Card 1: Email */}
              <button 
                 onClick={handleCopy}
                 className="group flex items-center gap-4 p-4 bg-white dark:bg-white/5 backdrop-blur-sm border border-gray-200 dark:border-white/10 rounded-2xl shadow-lg dark:shadow-none hover:border-primary/50 hover:bg-gray-50 dark:hover:bg-white/10 transition-all duration-300 cursor-pointer w-full text-left"
               >
-                <div className="p-3 bg-primary/10 rounded-full text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                <div className="p-3 bg-primary/10 rounded-full text-primary group-hover:bg-primary group-hover:text-white transition-colors shrink-0">
                   {copied ? <FaCheck size={20} /> : <FaEnvelope size={20} />}
                 </div>
                 <div className="flex-1 min-w-0">
@@ -56,7 +56,7 @@ const Footer = () => {
                     {email}
                   </p>
                 </div>
-                <FaCopy className="text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity" size={16} />
+                <FaCopy className="text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity shrink-0" size={16} />
              </button>
 
              {/* Card 2: LinkedIn */}
@@ -65,7 +65,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 className="group flex items-center gap-4 p-4 bg-white dark:bg-white/5 backdrop-blur-sm border border-gray-200 dark:border-white/10 rounded-2xl shadow-lg dark:shadow-none hover:border-blue-500/50 hover:bg-gray-50 dark:hover:bg-white/10 transition-all duration-300 cursor-pointer"
              >
-                <div className="p-3 bg-blue-100 dark:bg-blue-900/20 rounded-full text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                <div className="p-3 bg-blue-100 dark:bg-blue-900/20 rounded-full text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors shrink-0">
                   <FaLinkedin size={20} />
                 </div>
                 <div>
@@ -82,7 +82,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 className="group flex items-center gap-4 p-4 bg-white dark:bg-white/5 backdrop-blur-sm border border-gray-200 dark:border-white/10 rounded-2xl shadow-lg dark:shadow-none hover:border-gray-500/50 hover:bg-gray-50 dark:hover:bg-white/10 transition-all duration-300 cursor-pointer"
              >
-                <div className="p-3 bg-gray-100 dark:bg-gray-800 rounded-full text-gray-700 dark:text-gray-300 group-hover:bg-gray-700 dark:group-hover:bg-white group-hover:text-white dark:group-hover:text-gray-900 transition-colors">
+                <div className="p-3 bg-gray-100 dark:bg-gray-800 rounded-full text-gray-700 dark:text-gray-300 group-hover:bg-gray-700 dark:group-hover:bg-white group-hover:text-white dark:group-hover:text-gray-900 transition-colors shrink-0">
                   <FaGithub size={20} />
                 </div>
                 <div>
@@ -96,7 +96,7 @@ const Footer = () => {
              {/* Card 4: Location */}
              <div className="group p-4 bg-white dark:bg-white/5 backdrop-blur-sm border border-gray-200 dark:border-white/10 rounded-2xl shadow-lg dark:shadow-none hover:border-primary/50 transition-all duration-300">
                 <div className="flex items-center gap-4">
-                  <div className="p-3 bg-primary/10 rounded-full text-primary group-hover:scale-110 transition-transform">
+                  <div className="p-3 bg-primary/10 rounded-full text-primary group-hover:scale-110 transition-transform shrink-0">
                     <FaMapMarkerAlt size={20} />
                   </div>
                   <div>
@@ -111,7 +111,7 @@ const Footer = () => {
                 download="Sharmaine_Hannah_Valenzuela_Resume.pdf"
                 className="group flex items-center gap-4 p-4 bg-white dark:bg-white/5 backdrop-blur-sm border border-gray-200 dark:border-white/10 rounded-2xl shadow-lg dark:shadow-none hover:border-primary/50 hover:bg-gray-50 dark:hover:bg-white/10 transition-all duration-300 cursor-pointer"
              >
-                <div className="p-3 bg-primary/10 rounded-full text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                <div className="p-3 bg-primary/10 rounded-full text-primary group-hover:bg-primary group-hover:text-white transition-colors shrink-0">
                   <FaFileDownload size={20} />
                 </div>
                 <div>
@@ -124,8 +124,9 @@ const Footer = () => {
 
           </div>
 
-          {/* RIGHT SIDE: Contact Form (Full Height) */}
-          <div className="w-full h-full">
+          {/* RIGHT SIDE: Contact Form */}
+          {/* IMPORTANT: Ensure ContactForm.jsx does NOT have py-20 or mt-20, or it will look misaligned */}
+          <div className="w-full">
             <ContactForm />
           </div>
 
