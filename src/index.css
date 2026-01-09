@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Smooth scrolling for the whole page */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden; /* Prevents side-scrolling issues on mobile */
+  @apply bg-lightBg text-gray-900 transition-colors duration-300;
+}
+
+/* When the "dark" class is present on the HTML tag, 
+   apply these styles to the body 
+*/
+.dark body {
+  @apply bg-darkBg text-gray-100;
+}
