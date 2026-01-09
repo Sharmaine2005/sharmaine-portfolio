@@ -1,95 +1,103 @@
 import React, { useRef, useState } from 'react';
-import emailjs from '@emailjs/browser';
-import { FaPaperPlane } from 'react-icons/fa';
+import emailjs from '@emailjs/browser'; // Import EmailJS
+import { FaPaperPlane, FaUser, FaEnvelope, FaCommentAlt } from 'react-icons/fa';
 
-const ContactForm = () => {
+const Contact = () => {
   const form = useRef();
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [status, setStatus] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const sendEmail = (e) => {
     e.preventDefault();
-    setIsSubmitting(true);
+    setLoading(true);
 
-    // Replace with your actual credentials
-    emailjs.sendForm('service_id', 'template_id', form.current, 'public_key')
+    // REPLACE THESE WITH YOUR ACTUAL ID'S FROM STEP 1
+    const SERVICE_ID = "service_vu26om3";
+    const TEMPLATE_ID = "template_819gg0p";
+    const PUBLIC_KEY = "H5V5H-xKpIdoe8iJF";
+
+    emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, form.current, PUBLIC_KEY)
       .then((result) => {
-          setStatus('success');
-          form.current.reset();
+          setLoading(false);
+          alert("Message sent successfully! I will get back to you soon.");
+          form.current.reset(); // Clear the form
       }, (error) => {
-          setStatus('error');
-      })
-      .finally(() => setIsSubmitting(false));
+          setLoading(false);
+          console.log(error.text);
+          alert("Failed to send message. Please try again later.");
+      });
   };
 
   return (
-    <form 
-      ref={form} 
-      onSubmit={sendEmail} 
-      // h-full ensures it stretches to match the left side, but won't exceed it if content is small enough
-      className="bg-white dark:bg-white/5 backdrop-blur-sm border border-gray-200 dark:border-white/10 rounded-2xl p-8 shadow-lg dark:shadow-none h-full flex flex-col gap-6"
-    >
-      <div>
-        <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Send Message</h3>
-        <p className="text-gray-500 dark:text-gray-400 text-sm">
-          I'll get back to you as soon as possible.
-        </p>
+    <section id="contact" className="py-20 px-4 max-w-4xl mx-auto">
+      <div className="text-center mb-16" data-aos="fade-up">
+        <h2 className="text-3xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
+          Get in <span className="text-primary">Touch</span>
+        </h2>
+        <div className="w-24 h-1 bg-primary mx-auto rounded-full"></div>
       </div>
 
-      <div className="space-y-4 flex-1 flex flex-col">
-        <div className="grid md:grid-cols-2 gap-4">
-          <div className="space-y-2">
-            <label className="text-xs font-bold uppercase tracking-widest text-gray-500">Name</label>
+      <div className="bg-white dark:bg-white/5 backdrop-blur-sm shadow-xl p-8 rounded-2xl border border-gray-100 dark:border-white/10" data-aos="zoom-in">
+        <form ref={form} onSubmit={sendEmail} className="space-y-6">
+          
+          {/* Name Input */}
+          <div className="relative group">
+            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400 group-focus-within:text-primary transition-colors">
+              <FaUser />
+            </div>
             <input 
               type="text" 
-              name="user_name" 
+              name="user_name" // Must match {{user_name}} in EmailJS template
               required
-              className="w-full bg-gray-50 dark:bg-black/20 border border-gray-200 dark:border-white/10 rounded-xl px-4 py-3 text-gray-900 dark:text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
+              placeholder="Your Name" 
+              className="w-full pl-10 pr-4 py-3 bg-gray-50 dark:bg-black/20 border border-gray-200 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all text-gray-900 dark:text-white placeholder-gray-400"
             />
           </div>
-          <div className="space-y-2">
-            <label className="text-xs font-bold uppercase tracking-widest text-gray-500">Email</label>
+
+          {/* Email Input */}
+          <div className="relative group">
+            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400 group-focus-within:text-primary transition-colors">
+              <FaEnvelope />
+            </div>
             <input 
               type="email" 
-              name="user_email" 
+              name="user_email" // Must match {{user_email}} in EmailJS template
               required
-              className="w-full bg-gray-50 dark:bg-black/20 border border-gray-200 dark:border-white/10 rounded-xl px-4 py-3 text-gray-900 dark:text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
+              placeholder="Your Email" 
+              className="w-full pl-10 pr-4 py-3 bg-gray-50 dark:bg-black/20 border border-gray-200 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all text-gray-900 dark:text-white placeholder-gray-400"
             />
           </div>
-        </div>
 
-        {/* 2. REDUCED min-h-[150px] to min-h-[80px] */}
-        <div className="space-y-2 flex flex-col flex-grow">
-          <label className="text-xs font-bold uppercase tracking-widest text-gray-500">Message</label>
-          <textarea 
-            name="message" 
-            required
-            // CHANGED HERE: reduced min-h so it doesn't force the card to be taller than the left side
-            className="w-full flex-grow bg-gray-50 dark:bg-black/20 border border-gray-200 dark:border-white/10 rounded-xl px-4 py-3 text-gray-900 dark:text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors resize-none min-h-[80px]"
-          />
-        </div>
+          {/* Message Input */}
+          <div className="relative group">
+            <div className="absolute top-3 left-3 text-gray-400 group-focus-within:text-primary transition-colors">
+              <FaCommentAlt />
+            </div>
+            <textarea 
+              name="message" // Must match {{message}} in EmailJS template
+              required
+              rows="5"
+              placeholder="Your Message" 
+              className="w-full pl-10 pr-4 py-3 bg-gray-50 dark:bg-black/20 border border-gray-200 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all text-gray-900 dark:text-white placeholder-gray-400 resize-none"
+            ></textarea>
+          </div>
+
+          {/* Submit Button */}
+          <button 
+            type="submit" 
+            disabled={loading}
+            className="w-full py-4 bg-gradient-to-r from-primary to-blue-600 hover:from-blue-600 hover:to-primary text-white font-bold rounded-lg shadow-lg hover:shadow-primary/50 transform hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
+          >
+            {loading ? 'Sending...' : (
+              <>
+                Send Message <FaPaperPlane />
+              </>
+            )}
+          </button>
+
+        </form>
       </div>
-
-      <button 
-        type="submit" 
-        disabled={isSubmitting}
-        className="w-full bg-primary hover:bg-red-700 text-white font-bold py-4 rounded-xl transition-all shadow-lg shadow-primary/25 hover:shadow-primary/40 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
-      >
-        {isSubmitting ? 'Sending...' : <>Send Message <FaPaperPlane /></>}
-      </button>
-
-      {status === 'success' && (
-        <p className="text-green-500 text-center text-sm font-medium animate-pulse">
-          Message sent successfully!
-        </p>
-      )}
-      {status === 'error' && (
-        <p className="text-red-500 text-center text-sm font-medium">
-          Something went wrong. Please try again.
-        </p>
-      )}
-    </form>
+    </section>
   );
 };
 
-export default ContactForm;
+export default Contact;

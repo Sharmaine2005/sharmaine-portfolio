@@ -6,7 +6,7 @@ import profileNight from '../assets/profile-night.png';
 
 const Hero = ({ darkMode }) => {
   const [copied, setCopied] = useState(false);
-  const email = "sharmainehannahvalenzuela2005@gmail.com";
+  const email = "valenzuela.shp@gmail.com";
 
   const handleCopy = () => {
     navigator.clipboard.writeText(email);

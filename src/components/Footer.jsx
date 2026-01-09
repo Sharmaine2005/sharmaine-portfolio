@@ -4,7 +4,7 @@ import ContactForm from './ContactForm';
 
 const Footer = () => {
   const [copied, setCopied] = useState(false);
-  const email = "sharmainehannahvalenzuela2005@gmail.com";
+  const email = "valenzuela.shp@gmail.com";
 
   const handleCopy = (e) => {
     e.preventDefault(); 
