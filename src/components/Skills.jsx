@@ -3,11 +3,16 @@ import React from 'react';
 import { 
   FaCode, FaDatabase, FaGithub, FaServer, FaEdit, FaSitemap, 
   FaUsers, FaHandshake, FaLightbulb, FaBrain, FaComments, FaClock, 
-  FaMicrochip, FaUserTie 
+  FaMicrochip, FaUserTie, FaBullseye, FaEye 
 } from 'react-icons/fa';
 
 const Skills = () => {
-  // DATA INLINED (SAFE MODE)
+  // --- UPDATED DATA SECTIONS ---
+  
+  const MISSION = "To develop impactful systems that go beyond meeting tasks, driving positive change and betterment for society with unwavering integrity and a heart for helping others.";
+  
+  const VISION = "To become a successful innovator who builds transformative solutions that elevate lives, remaining steadfast in my commitment to integrity and serving the greater good.";
+
   const TECHNICAL_SKILLS = [
     "UI/UX Designing", "Wireframing & Prototyping", "PHP", "MySQL", "GitHub", "XAMPP", "Visual Studio Code"
   ];
@@ -38,21 +43,53 @@ const Skills = () => {
   return (
     <section id="skills" className="py-20 px-4 max-w-7xl mx-auto relative overflow-hidden">
       
-      {/* Background Elements - Adjusted to be subtle in both modes */}
-      <div className="absolute top-10 left-10 w-32 h-32 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
-      <div className="absolute bottom-10 right-10 w-32 h-32 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
+      {/* Background Elements - Crucial for the glass effect */}
+      <div className="absolute top-10 left-10 w-64 h-64 bg-primary/20 rounded-full blur-3xl pointer-events-none"></div>
+      <div className="absolute bottom-10 right-10 w-64 h-64 bg-blue-500/20 rounded-full blur-3xl pointer-events-none"></div>
 
-      {/* Header */}
-      <div className="text-center mb-16 relative z-10" data-aos="fade-up">
-         <h2 className="text-4xl font-bold mb-4 tracking-tight text-gray-900 dark:text-white">
-          My <span className="text-primary">Capabilities</span>
-        </h2>
-        <div className="w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto rounded-full"></div>
+      {/* --- ROW 1: MISSION & VISION (IPHONE GLASS EFFECT) --- */}
+      <div className="grid md:grid-cols-2 gap-8 mb-12 relative z-10">
+        
+        {/* MISSION CARD */}
+        <div 
+          data-aos="fade-up" 
+          className="backdrop-blur-md bg-white/40 dark:bg-black/30 border border-white/20 dark:border-white/10 shadow-lg p-8 rounded-2xl transition-all duration-300 flex flex-col"
+        >
+          <div className="flex items-center gap-4 mb-4">
+            <div className="p-3 bg-red-100/80 dark:bg-red-900/50 rounded-full text-primary">
+              <FaBullseye size={22} />
+            </div>
+            <h3 className="text-2xl font-bold tracking-wide text-gray-900 dark:text-white uppercase drop-shadow-sm">Mission</h3>
+          </div>
+          <p className="text-gray-800 dark:text-gray-200 leading-relaxed text-sm md:text-base font-medium drop-shadow-sm">
+            {MISSION}
+          </p>
+        </div>
+
+        {/* VISION CARD */}
+        <div 
+          data-aos="fade-up" 
+          data-aos-delay="100"
+          className="backdrop-blur-md bg-white/40 dark:bg-black/30 border border-white/20 dark:border-white/10 shadow-lg p-8 rounded-2xl transition-all duration-300 flex flex-col"
+        >
+          <div className="flex items-center gap-4 mb-4">
+            <div className="p-3 bg-blue-100/80 dark:bg-blue-900/50 rounded-full text-blue-600 dark:text-blue-400">
+              <FaEye size={22} />
+            </div>
+            <h3 className="text-2xl font-bold tracking-wide text-gray-900 dark:text-white uppercase drop-shadow-sm">Vision</h3>
+          </div>
+          <p className="text-gray-800 dark:text-gray-200 leading-relaxed text-sm md:text-base font-medium drop-shadow-sm">
+            {VISION}
+          </p>
+        </div>
+
       </div>
-      
+
+
+      {/* --- ROW 2: TECHNICAL & PROFESSIONAL SKILLS (ORIGINAL DESIGN) --- */}   
       <div className="grid md:grid-cols-2 gap-8 items-start relative z-10">
         
-        {/* 1. TECHNICAL ARSENAL */}
+        {/* TECHNICAL ARSENAL */}
         <div 
           data-aos="fade-right" 
           className="bg-white dark:bg-black/20 shadow-xl dark:shadow-none border border-gray-200 dark:border-white/10 p-8 rounded-2xl transition-colors duration-300"
@@ -79,7 +116,7 @@ const Skills = () => {
           </div>
         </div>
 
-        {/* 2. PROFESSIONAL TRAITS */}
+        {/* PROFESSIONAL TRAITS */}
         <div 
           data-aos="fade-left" 
           className="bg-white dark:bg-black/20 shadow-xl dark:shadow-none border border-gray-200 dark:border-white/10 p-8 rounded-2xl transition-colors duration-300"
@@ -105,7 +142,6 @@ const Skills = () => {
             ))}
           </div>
         </div>
-
       </div>
     </section>
   );
